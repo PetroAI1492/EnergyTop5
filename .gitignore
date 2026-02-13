@@ -1,0 +1,47 @@
+# -------------------------
+# Secret / Sensitive Files
+# -------------------------
+config.ini
+*.env
+.env
+secrets/
+*.key
+*.pem
+*.p12
+*.token
+
+# Prevent accidental commits of OS credentials
+*.DS_Store
+Thumbs.db
+
+# -------------------------
+# Python (if applicable)
+# -------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# -------------------------
+# Node (if applicable)
+# -------------------------
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# -------------------------
+# Logs
+# -------------------------
+*.log
+logs/

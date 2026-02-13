@@ -1,0 +1,147 @@
+from datetime import datetime
+
+
+def section(title: str, content: str) -> str:
+    return f"""
+    <section class="block">
+        <h2>{title}</h2>
+        <p>{content}</p>
+    </section>
+    """
+
+
+def render_html(brief: dict) -> str:
+    generated_time = datetime.now().strftime("%B %d, %Y %H:%M")
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Petroleum Morning Brief</title>
+
+<style>
+body {{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                 "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+    margin: 28px 40px;
+    line-height: 1.35;
+}}
+
+h1 {{
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 2px;
+}}
+
+.subtitle {{
+    color: #555;
+    font-size: 12px;
+    margin-bottom: 20px;
+}}
+
+.block {{
+    margin-bottom: 18px;
+}}
+
+h2 {{
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #cfcfcf;
+    letter-spacing: 0.2px;
+}}
+
+p {{
+    font-size: 13px;
+    margin: 0;
+}}
+
+table {{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+}}
+
+th {{
+    font-size: 11px;
+    font-weight: 500;
+    color: #555;
+    border-bottom: 1px solid #bbb;
+    padding: 4px 3px;
+    text-align: left;
+}}
+
+td {{
+    font-size: 13px;
+    padding: 4px 3px;
+}}
+
+.pos {{
+    color: #006400;
+    font-weight: 500;
+}}
+
+.neg {{
+    color: #8b0000;
+    font-weight: 500;
+}}
+
+.footer {{
+    margin-top: 32px;
+    font-size: 10.5px;
+    color: #666;
+    line-height: 1.35;
+}}
+</style>
+</head>
+
+<body>
+
+<h1>Petroleum Morning Brief</h1>
+<div class="subtitle">
+Coverage: Last 24 Hours<br>
+Generated: {generated_time}<br>
+Internal Market Intelligence
+</div>
+
+{section("Executive Snapshot", brief["executive_snapshot"])}
+
+{section("Market Signal", brief["market_signal"])}
+
+<section class="block">
+    <h2>Market Overview</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Instrument</th>
+                <th>Price</th>
+                <th>Δ (Daily)</th>
+                <th>% Change</th>
+            </tr>
+        </thead>
+        <tbody>
+            {brief["market_overview"]}
+        </tbody>
+    </table>
+</section>
+
+{section("Supply & Operations", brief["supply_operations"])}
+
+{section("Demand & Products", brief["demand_products"])}
+
+{section("Regulatory & Geopolitical", brief["regulatory_geopolitical"])}
+
+{section("Key Decisions & Watchpoints", brief["watchpoints"])}
+
+<div class="footer">
+© 2026 Randy Hinton. All rights reserved.<br>
+This brief is an analytical synthesis provided for informational purposes only and does not constitute investment advice.
+Figures are indicative and subject to intraday revision.
+</div>
+
+</body>
+</html>
+"""

@@ -1,0 +1,10 @@
+# Ignore everything
+*
+
+# Allow HTML artifacts
+!index.html
+!archive/
+!archive/*.html
+
+# Allow README
+!README.md
